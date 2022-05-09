@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 
 import { Container, Card, CardBody, Row, Col, Form, FormGroup, Label, Input, Button,FormFeedback } from 'reactstrap'
 
-const LoginComponent = ({username,password,setUsername,setPassword,onLogin}) => {
+const LoginComponent = ({ state,dispatch,
+    onLogin}) => {
     return (
         <Container className="d-flex flex-column justify-content-center h-100-vh">
             <Row className='col-md-6 offset-md-3'>
@@ -21,11 +22,12 @@ const LoginComponent = ({username,password,setUsername,setPassword,onLogin}) => 
                                         name="email"
                                         placeholder="with a placeholder"
                                         type="email"
-                                        value={username}
-                                        onChange = { e => setUsername(e.target.value)}
+                                        value={state.username}
+                                        onChange = { e => dispatch({type : 'username',value : e.target.value})}
+                                        invalid={state.usernameError !== null} 
                                     />
-                                    <FormFeedback tooltip>
-                                        Invalid Email
+                                    <FormFeedback >
+                                        {state.usernameError}
                                     </FormFeedback>
                                 </FormGroup>
                                 <FormGroup>
@@ -37,11 +39,12 @@ const LoginComponent = ({username,password,setUsername,setPassword,onLogin}) => 
                                         name="password"
                                         placeholder="password placeholder"
                                         type="password"
-                                        value={password}
-                                        onChange={e => setPassword(e.target.value)}
+                                        value={state.password}
+                                        onChange={e => dispatch({type : 'password', value: e.target.value})}
+                                        invalid={state.passwordError !== null}
                                     />
-                                    <FormFeedback tooltip>
-                                        invalid Password
+                                    <FormFeedback >
+                                        {state.passwordError}
                                     </FormFeedback>
                                 </FormGroup>
                                 <Button onClick={onLogin}>Login</Button>
@@ -58,9 +61,6 @@ const LoginComponent = ({username,password,setUsername,setPassword,onLogin}) => 
 export default LoginComponent
 
 LoginComponent.propTypes = {
-    username : PropTypes.string.isRequired,
-    password : PropTypes.string.isRequired,
-    setUsername : PropTypes.func.isRequired,
-    setPassword : PropTypes.func.isRequired,
+   
     onLogin : PropTypes.func.isRequired
 }
