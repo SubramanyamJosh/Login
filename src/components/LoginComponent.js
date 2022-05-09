@@ -61,6 +61,5 @@ const LoginComponent = ({ state,dispatch,
 export default LoginComponent
 
 LoginComponent.propTypes = {
-   
     onLogin : PropTypes.func.isRequired
 }

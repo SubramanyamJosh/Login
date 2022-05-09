@@ -2,21 +2,24 @@ export const initialState = {
     username: '',
     password: '',
     usernameError: null,
-    passwordError: null
+    passwordError: null,
+    userDetails : {}
 }
 
-const reducer = (state, action) => {
+const reducer = (initialState, action) => {
     switch (action.type) {
         case "username":
-            return { ...state, username: action.value, usernameError:null}
+            return { ...initialState, username: action.value, usernameError:null}
         case "password":
-            return { ...state, password: action.value,passwordError:null }
+            return { ...initialState, password: action.value,passwordError:null }
         case "usernameError":
-            return { ...state, usernameError: action.value }
+            return { ...initialState, usernameError: action.value }
         case "passwordError":
-            return { ...state, passwordError: action.value }
+            return { ...initialState, passwordError: action.value }
+        case "userDetails":
+            return {...initialState, userDetails : action.value}
         default:
-            throw new Error();
+            return initialState
     }
 
 }
