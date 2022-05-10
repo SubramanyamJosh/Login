@@ -1,5 +1,5 @@
 import React, { useReducer, useState } from "react";
-import { useHistory } from 'react-router-dom';
+import { useHistory,Navigate } from 'react-router-dom';
 import * as yup from 'yup'
 import LoginComponent from "../components/LoginComponent";
 import apiHelper from "../apis/ApiHelper";
@@ -39,10 +39,10 @@ const LoginContainer = () => {
         })
     }
 
-    let history = useHistory();
+    // let history = useHistory();
     if(state.userDetails.auth_token){
         debugger;
-        return history.push("/dashboard")
+        return  <Navigate to='/dashboard'/>
     }
 
 

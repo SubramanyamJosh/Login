@@ -1,20 +1,19 @@
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LoginContainer from "../containers/LoginContainer";
 import ProductsList from "../containers/ProductsContainer";
 
-const Routes = () => {
+const AllRoutes = () => {
 
     return (
         <Router>
-            <Switch>
-                debugger;
+            <Routes>
                 {/* <Route exact path='/' component={LoginContainer} />
                 <Route exact path='/dashboard' component={ProductsList}/> */}
-                <Route exact path="/"><LoginContainer/></Route>
-                <Route exact path="/dashboard"><ProductsList/></Route>
-            </Switch>
+                <Route exact path="/" element={<LoginContainer/>}/>
+                <Route exact path="/dashboard" element={<ProductsList/>}/>
+            </Routes>
         </Router>
     )
 }
 
-export default Routes
+export default AllRoutes
